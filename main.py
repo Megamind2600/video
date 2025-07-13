@@ -63,7 +63,7 @@ def generate_video(payload: TextPayload):
     width, height = 720, 1280
     font_size = 60
     duration = 5  # fallback
-    font_path = os.path.join(os.path.dirname(__file__), "fonts", "Lohit-Devanagari.ttf")
+    font_path = os.path.join(os.path.dirname(__file__), "fonts", "one.ttf")
 
     # AUDIO
     english_audio_path = audio(english)
