@@ -60,7 +60,7 @@ def generate_video(payload: TextPayload):
     english = payload.english
     hindi = payload.hindi
 
-    width, height = 720, 1280
+    width, height = 480, 720
     font_size = 60
     duration = 5  # fallback
     font_path = os.path.join(os.path.dirname(__file__), "fonts", "one.ttf")
@@ -78,7 +78,7 @@ def generate_video(payload: TextPayload):
 
     # TEXT
     text = f"{english['text']}\n-----------\n``````````\n{hindi['text']}"
-    image = Image.new("RGB", (width, height), color="white")
+    image = Image.new("RGB", (width, height), color=(245, 245, 240))  # soft off-white
     draw = ImageDraw.Draw(image)
     font = ImageFont.truetype(font_path, font_size)
 
@@ -102,7 +102,7 @@ def generate_video(payload: TextPayload):
 
     output_path = os.path.join("static", "output_video.mp4")
     os.makedirs("static", exist_ok=True)
-    video.write_videofile(output_path, fps=24)
+    video.write_videofile(output_path, fps=12)
 
     # CLEANUP
     os.remove(english_audio_path)
