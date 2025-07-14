@@ -61,7 +61,7 @@ def generate_video(payload: TextPayload):
     hindi = payload.hindi
 
     width, height = 480, 720
-    font_size = 60
+    font_size = 48
     duration = 5  # fallback
     font_path = os.path.join(os.path.dirname(__file__), "fonts", "one.ttf")
 
