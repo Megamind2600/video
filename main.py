@@ -77,11 +77,34 @@ def generate_video(payload: TextPayload):
     duration = final_audio.duration
 
     # TEXT
-    text = f"{english['text']}\n-----------\n``````````\n{hindi['text']}"
-    image = Image.new("RGB", (width, height), color=(245, 245, 240))  # soft off-white
-    draw = ImageDraw.Draw(image)
-    font = ImageFont.truetype(font_path, font_size)
+  #  text = f"{english['text']}\n-----------\n``````````\n{hindi['text']}"
+    #image = Image.new("RGB", (width, height), color=(245, 245, 240))  # soft off-white
+   # draw = ImageDraw.Draw(image)
+  #  font = ImageFont.truetype(font_path, font_size)
 
+
+     # TEXT
+    text = f"{english['text']}\n-----------\n``````````\n{hindi['text']}"
+
+# Gradient background (left-to-right: #00C6FF → #E61EAD)
+    start_color = (0, 198, 255)   # #00C6FF
+    end_color = (230, 30, 173)    # #E61EAD
+    image = Image.new("RGB", (width, height), color=0)
+    for x in range(width):
+     blend = x / (width - 1)
+     r = int(start_color[0] * (1 - blend) + end_color[0] * blend)
+     g = int(start_color[1] * (1 - blend) + end_color[1] * blend)
+     b = int(start_color[2] * (1 - blend) + end_color[2] * blend)
+    for y in range(height):
+     image.putpixel((x, y), (r, g, b))
+
+# Draw inner black rectangle (like screenshot border effect)
+    margin = 10
+    draw = ImageDraw.Draw(image)
+    draw.rectangle([margin, margin, width - margin, height - margin],outline=None,fill=(0, 0, 0))
+
+# Now prepare font
+    font = ImageFont.truetype(font_path, font_size)
     max_text_width = width - 100
     lines = wrap_text(text, font, draw, max_text_width)
     line_heights = [draw.textbbox((0, 0), line, font=font)[3] - draw.textbbox((0, 0), line, font=font)[1] for line in lines]
@@ -93,7 +116,7 @@ def generate_video(payload: TextPayload):
         bbox = draw.textbbox((0, 0), line, font=font)
         text_width = bbox[2] - bbox[0]
         x = (width - text_width) / 2
-        draw.text((x, start_y + y_offset), line, fill="black", font=font)
+        draw.text((x, start_y + y_offset), line, fill="white", font=font)
         y_offset += line_height
 
     image_np = np.array(image)
