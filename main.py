@@ -95,11 +95,11 @@ def generate_video(payload: TextPayload):
      r = int(start_color[0] * (1 - blend) + end_color[0] * blend)
      g = int(start_color[1] * (1 - blend) + end_color[1] * blend)
      b = int(start_color[2] * (1 - blend) + end_color[2] * blend)
-    for y in range(height):
-     image.putpixel((x, y), (r, g, b))
+     for y in range(height):
+      image.putpixel((x, y), (r, g, b))
 
 # Draw inner black rectangle (like screenshot border effect)
-    margin = 25
+    margin = 15
     draw = ImageDraw.Draw(image)
     draw.rectangle([margin, margin, width - margin, height - margin],outline=None,fill=(0, 0, 0))
 
