@@ -99,7 +99,7 @@ def generate_video(payload: TextPayload):
      image.putpixel((x, y), (r, g, b))
 
 # Draw inner black rectangle (like screenshot border effect)
-    margin = 12
+    margin = 25
     draw = ImageDraw.Draw(image)
     draw.rectangle([margin, margin, width - margin, height - margin],outline=None,fill=(0, 0, 0))
 
