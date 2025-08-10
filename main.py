@@ -61,7 +61,7 @@ def generate_video(payload: TextPayload):
     hindi = payload.hindi
 
     width, height = 480, 720
-    font_size = 48
+    font_size = 36
     duration = 5  # fallback
     font_path = os.path.join(os.path.dirname(__file__), "fonts", "one.ttf")
 
@@ -99,7 +99,7 @@ def generate_video(payload: TextPayload):
      image.putpixel((x, y), (r, g, b))
 
 # Draw inner black rectangle (like screenshot border effect)
-    margin = 10
+    margin = 5
     draw = ImageDraw.Draw(image)
     draw.rectangle([margin, margin, width - margin, height - margin],outline=None,fill=(0, 0, 0))
 
